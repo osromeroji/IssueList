@@ -4,28 +4,70 @@
             <input type="text" />
             <button>Añadir</button>
         </div>
-        <div class="secondDiv">
-            <div v-for="column in columns"
-                 :key="column.title"
-                 class="thirdDiv">
-                <h1 class="firstP">{{column.title}}</h1>
-                <!-- Draggable component comes from vuedraggable. It provides drag & drop functionality -->
-                <draggable class="draggable" dir:list="column.tasks" :animation="200" ghost-class="ghost-card" group="tasks">
-                    <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
-                    <kanban v-for="(task) in column.tasks"
-                            :key="task.id"
-                            :task="task"
-                            class="kanban"></kanban>
-                    <!-- </transition-group> -->
-                </draggable>
+
+        <div class="tab">
+            <button v-for="(tab, index) in tabs" :key="index" @click="currentTab = index" :class="{active: currentTab === index}">{{ tab }}</button>
+        </div>
+
+        <div class="tab-content">
+            <div v-show="currentTab === 0">
+                <div v-for="column in columns"
+                         :key="column.title" class="issueList">
+                    <div v-for="(task) in column.tasks" :key="task.id"
+                                    :task="task" class="issueListElement">
+                        <h1>{{task.title}}</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div v-show="currentTab === 1">
+                <div class="secondDiv">
+                    <div v-for="column in columns"
+                         :key="column.title"
+                         class="thirdDiv">
+                        <h1 class="firstP">{{column.title}}</h1>
+                        <!-- Draggable component comes from vuedraggable. It provides drag & drop functionality -->
+                        <draggable class="draggable" dir:list="column.tasks" :animation="200" ghost-class="ghost-card" group="tasks">
+                            <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
+                            <kanban v-for="(task) in column.tasks"
+                                    :key="task.id"
+                                    :task="task"
+                                    class="kanban"></kanban>
+                            <!-- </transition-group> -->
+                        </draggable>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!--<div class="tab">
+        <button class="tablinks" v-on:click="openCity(event, 'London')" id="defaultOpen">Lista</button>
+        <button class="tablinks" v-on:click="openCity(event, 'Paris')">Kanban</button>
+        <button class="tablinks" v-on:click="openCity(event, 'Tokyo')">Tokyo</button>
+    </div>-->
+        <!--<div id="London" class="tabcontent">
+        <h3>London</h3>
+        <p>London is the capital city of England.</p>
+    </div>
+
+    <div id="Paris" class="tabcontent">
+        <h3>Paris</h3>
+        <p>Paris is the capital of France.</p>
+    </div>-->
+
+        
     </div>
 </template>
 
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
 <script>
     import draggable from "vuedraggable";
     import kanban from "./components/kanban.vue";
+    const axios = require('axios');
+    var url = '@Url.RouteUrl("Default")';
+
     export default {
         name: "App",
         components: {
@@ -35,6 +77,8 @@
         data() {
             return {
                 mensaje: 'Hola mundo desde vue',
+                currentTab: 0,
+                tabs: ['List', 'Kanban'],
                 columns: [
                     {
                         title: "Backlog",
@@ -155,80 +199,126 @@
                     }
                 ]
             };
+        },
+        methods: {
+            openCity(evt, cityName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            },
+            created: function () {
+                document.getElementById("defaultOpen").click();
+            }
         }
-        //methods: {
-                    //    //    created: function () {
-                    //    //        axios.get(url + "/GetUsers")
-                    //    //            .then(function (response) {
-                    //    //                console.table(response.data);
-                    //    //                app.lista = response.data;
-                    //    //            })
-                    //    //            .catch(function (error) {
-                    //    //                console.log(error);
-                    //    //            });
-                    //    //    }
-                    //    //}
+        
     };
 </script>
 
 <style scoped>
-        .firstDiv {
-            padding-top: 10px;
-            margin-left: 20px;
-            margin-bottom: -1px;
+    .firstDiv {
+        padding-top: 10px;
+        margin-left: 20px;
+        margin-bottom: -1px;
+    }
+
+        .firstDiv input {
+            width: 250px;
         }
 
-            .firstDiv input {
-                width: 250px;
+    .draggable {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .firstDiv button {
+        width: 80px;
+    }
+
+    .secondDiv {
+        padding-bottom: 3rem;
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .thirdDiv {
+        padding-bottom: 3rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        margin: 20px;
+        border-radius: 0.5rem;
+        background-color: rgb(204,204,255);
+        width: 50%;
+    }
+
+    .firstP {
+        color: rgba(55, 65, 81);
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .kanban {
+        margin-top: 0.75rem;
+        cursor: move;
+        width: 350px;
+    }
+
+    .column-width {
+        min-width: 320px;
+        width: 320px;
+    }
+    .issueListElement {
+        background-color: gray;
+        width: 100%;
+    }
+    /* Unfortunately @apply cannot be setup in codesandbox,
+    but you'd use "@apply border opacity-50 border-blue-500 bg-gray-200" here */
+    .ghost-card {
+        opacity: 0.5;
+        background: #F7FAFC;
+        border: 1px solid #4299e1;
+    }
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
             }
 
-        .draggable {
-            text-align: center;
-            justify-content: center;
-        }
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #ccc;
+            }
 
-        .firstDiv button {
-            width: 80px;
-        }
-
-        .secondDiv {
-            padding-bottom: 3rem;
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .thirdDiv {
-            padding-bottom: 3rem;
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            margin: 20px;
-            border-radius: 0.5rem;
-            background-color: rgb(204,204,255);
-            width: 50%;
-        }
-
-        .firstP {
-            color: rgba(55, 65, 81);
-            font-size: 1.5rem;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .kanban {
-            margin-top: 0.75rem;
-            cursor: move;
-            width: 350px;
-        }
-
-        .column-width {
-            min-width: 320px;
-            width: 320px;
-        }
-        /* Unfortunately @apply cannot be setup in codesandbox,
-    but you'd use "@apply border opacity-50 border-blue-500 bg-gray-200" here */
-        .ghost-card {
-            opacity: 0.5;
-            background: #F7FAFC;
-            border: 1px solid #4299e1;
-        }
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    } 
 </style>
