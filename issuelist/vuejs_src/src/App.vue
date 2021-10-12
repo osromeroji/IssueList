@@ -34,94 +34,99 @@
         },
         data() {
             return {
+                mensaje: 'Hola mundo desde vue',
                 columns: [
                     {
                         title: "Backlog",
                         tasks: [
                             {
+                                id: 1,
                                 title: "Add discount code to checkout page",
-                                description: "",
-                                severity: ""
+                                description: "Add discount code to checkout page",
+                                severity: "High"
                             },
                             {
                                 id: 2,
                                 title: "Provide documentation on integrations",
-                                date: "Sep 12"
+                                description: "Provide documentation on integrations",
+                                severity: "Medium"
                             },
                             {
                                 id: 3,
                                 title: "Design shopping cart dropdown",
-                                date: "Sep 9",
-                                type: "Design"
+                                description: "Design shopping cart dropdown",
+                                severity: "High"
                             },
                             {
                                 id: 4,
                                 title: "Add discount code to checkout page",
-                                date: "Sep 14",
-                                type: "Feature Request"
+                                description: "Add discount code to checkout page",
+                                severity: "Low"
+
                             },
                             {
                                 id: 5,
                                 title: "Test checkout flow",
-                                date: "Sep 15",
-                                type: "QA"
+                                description: "Test checkout flow",
+                                severity: "Low"
                             }
                         ]
                     },
                     {
-                        title: "In Progress",
+                        title: "To do",
                         tasks: [
                             {
                                 id: 6,
-                                title: "Design shopping cart dropdown",
-                                date: "Sep 9",
-                                type: "Design"
+                                title: "Design shopping cart web",
+                                description: "Design shopping cart web",
+                                severity: "Low"
                             },
                             {
                                 id: 7,
-                                title: "Add discount code to checkout page",
-                                date: "Sep 14",
-                                type: "Feature Request"
+                                title: "Modify discount to checkout page",
+                                description: "Modify discount to checkout page",
+                                severity: "Low"
                             },
                             {
                                 id: 8,
-                                title: "Provide documentation on integrations",
-                                date: "Sep 12",
-                                type: "Backend"
+                                title: "Integrations",
+                                description: "Provide documentation on integrations",
+                                severity: "Medium"
                             }
                         ]
                     },
                     {
-                        title: "Review",
+                        title: "Doing",
                         tasks: [
                             {
                                 id: 9,
-                                title: "Provide documentation on integrations",
-                                date: "Sep 12"
+                                title: "Creating app",
+                                description: "Creating app",
+                                severity: "Medium"
                             },
                             {
                                 id: 10,
-                                title: "Design shopping cart dropdown",
-                                date: "Sep 9",
-                                type: "Design"
+                                title: "Connecting server",
+                                description: "Connecting server",
+                                severity: "High"
                             },
                             {
                                 id: 11,
-                                title: "Add discount code to checkout page",
-                                date: "Sep 14",
-                                type: "Feature Request"
+                                title: "Response from API",
+                                description: "Response from API",
+                                severity: "High"
                             },
                             {
                                 id: 12,
-                                title: "Design shopping cart dropdown",
-                                date: "Sep 9",
-                                type: "Design"
+                                title: "Designing LOGO",
+                                description: "Designing LOGO",
+                                severity: "Low"
                             },
                             {
                                 id: 13,
-                                title: "Add discount code to checkout page",
-                                date: "Sep 14",
-                                type: "Feature Request"
+                                title: "Create social networks",
+                                description: "Create social networks",
+                                severity: "Low"
                             }
                         ]
                     },
@@ -130,27 +135,39 @@
                         tasks: [
                             {
                                 id: 14,
-                                title: "Add discount code to checkout page",
-                                date: "Sep 14",
-                                type: "Feature Request"
+                                title: "Apply styles",
+                                description: "Apply styles",
+                                severity: "Low"
                             },
                             {
                                 id: 15,
-                                title: "Design shopping cart dropdown",
-                                date: "Sep 9",
-                                type: "Design"
+                                title: "Store data in DB",
+                                description: "Store data in DB",
+                                severity: "Medium"
                             },
                             {
                                 id: 16,
-                                title: "Add discount code to checkout page",
-                                date: "Sep 14",
-                                type: "Feature Request"
+                                title: "Develop autosave",
+                                description: "Develop autosave",
+                                severity: "High"
                             }
                         ]
                     }
                 ]
             };
         }
+        //methods: {
+                    //    //    created: function () {
+                    //    //        axios.get(url + "/GetUsers")
+                    //    //            .then(function (response) {
+                    //    //                console.table(response.data);
+                    //    //                app.lista = response.data;
+                    //    //            })
+                    //    //            .catch(function (error) {
+                    //    //                console.log(error);
+                    //    //            });
+                    //    //    }
+                    //    //}
     };
 </script>
 
