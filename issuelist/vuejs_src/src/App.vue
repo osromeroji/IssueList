@@ -13,10 +13,15 @@
             <div v-show="currentTab === 0">
                 <div v-for="column in columns"
                          :key="column.title" class="issueList">
-                    <div v-for="(task) in column.tasks" :key="task.id"
-                                    :task="task" class="issueListElement">
+                    <kanban v-for="(task) in column.tasks"
+                            :key="task.id"
+                            :task="task"
+                            :class="{red: task.severity === 'High', yellow: task.severity === 'Medium' , green: task.severity === 'Low'}"></kanban>
+                    <!--<div v-for="(task) in column.tasks" :key="task.id"
+                         :task="task" 
+                         :class="{red: task.severity === 'High', yellow: task.severity === 'Medium' , green: task.severity === 'Low'}">
                         <h1>{{task.title}}</h1>
-                    </div>
+                    </div>-->
                 </div>
             </div>
 
@@ -62,6 +67,7 @@
                 mensaje: 'Hola mundo desde vue',
                 currentTab: 0,
                 tabs: ['List', 'Kanban'],
+                users : [],
                 columns: [
                     {
                         title: "Backlog",
@@ -182,7 +188,25 @@
                     }
                 ]
             };
-        } 
+        },
+        methods: {
+            getColorOfCard: function (severity) {
+                let color = '';
+                if (severity == "High") {
+                    color = "red";
+                } else if (severity == "Medium") {
+                    color = "yellow";
+                } else if (severity == "Low") {
+                    color = "green";
+                }
+                return { color };
+            }
+        },
+        created() {
+            this.$http.get('https://jsonplaceholder.typicode.com/users').then(function (data) {
+                this.users = data.body.slice(0,10)
+            })
+        }
     };
 </script>
 
@@ -240,7 +264,6 @@
         width: 320px;
     }
     .issueListElement {
-        background-color: gray;
         width: 100%;
     }
     /* Unfortunately @apply cannot be setup in codesandbox,
@@ -284,5 +307,24 @@
         padding: 6px 12px;
         border: 1px solid #ccc;
         border-top: none;
-    } 
+    }
+    .red {
+        background-color: red;
+        width: inherit;
+        padding: 10px;
+        margin-top: 20px;
+        height: 50px;
+    }
+    .green {
+        background-color: green;
+        width: inherit;
+        margin-top: 20px;
+        height: 50px;
+    }
+    .yellow {
+        background-color: yellow;
+        width: inherit;
+        margin-top: 20px;
+        height: 50px;
+    }
 </style>
