@@ -1,10 +1,6 @@
 <template>
     <div id="app">
-        <div class="firstDiv">
-            <input type="text" />
-            <button>Añadir</button>
-        </div>
-
+        
         <div class="tab">
             <button v-for="(tab, index) in tabs" :key="index" @click="currentTab = index" :class="{active: currentTab === index}">{{ tab }}</button>
         </div>
@@ -12,32 +8,35 @@
         <div class="tab-content">
             <div v-show="currentTab === 0">
                 <div v-for="column in columns"
-                         :key="column.title" class="issueList">
+                     :key="column.title" class="issueList">
                     <kanban v-for="(task) in column.tasks"
                             :key="task.id"
                             :task="task"
-                            :class="{red: task.severity === 'High', yellow: task.severity === 'Medium' , green: task.severity === 'Low'}"></kanban>
-                    <!--<div v-for="(task) in column.tasks" :key="task.id"
-                         :task="task" 
-                         :class="{red: task.severity === 'High', yellow: task.severity === 'Medium' , green: task.severity === 'Low'}">
-                        <h1>{{task.title}}</h1>
-                    </div>-->
+                            v-bind:asigneeName="task.asignee"
+                            :class="{red: task.severity === 'High', yellow: task.severity === 'Medium' , green: task.severity === 'Low'}">
+                    </kanban>
                 </div>
             </div>
 
             <div v-show="currentTab === 1">
+                <div class="firstDiv">
+                    <input type="text" />
+                    <button>Añadir</button>
+                </div>
+
                 <div class="secondDiv">
                     <div v-for="column in columns"
                          :key="column.title"
                          class="thirdDiv">
                         <h1 class="firstP">{{column.title}}</h1>
-                        <!-- Draggable component comes from vuedraggable. It provides drag & drop functionality -->
                         <draggable class="draggable" dir:list="column.tasks" :animation="200" ghost-class="ghost-card" group="tasks">
                             <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
                             <kanban v-for="(task) in column.tasks"
                                     :key="task.id"
                                     :task="task"
-                                    class="kanban"></kanban>
+                                    v-bind:asigneeName="task.asignee"
+                                    :class="{kanbanred: task.severity === 'High', kanbanyellow: task.severity === 'Medium' , kanbangreen: task.severity === 'Low'}">
+                            </kanban>
                             <!-- </transition-group> -->
                         </draggable>
                     </div>
@@ -76,32 +75,37 @@
                                 id: 1,
                                 title: "Add discount code to checkout page",
                                 description: "Add discount code to checkout page",
-                                severity: "High"
+                                severity: "High",
+                                asignee: ""
                             },
                             {
                                 id: 2,
                                 title: "Provide documentation on integrations",
                                 description: "Provide documentation on integrations",
-                                severity: "Medium"
+                                severity: "Medium",
+                                asignee: ""
                             },
                             {
                                 id: 3,
                                 title: "Design shopping cart dropdown",
                                 description: "Design shopping cart dropdown",
-                                severity: "High"
+                                severity: "High",
+                                asignee: ""
                             },
                             {
                                 id: 4,
                                 title: "Add discount code to checkout page",
                                 description: "Add discount code to checkout page",
-                                severity: "Low"
+                                severity: "Low",
+                                asignee: ""
 
                             },
                             {
                                 id: 5,
                                 title: "Test checkout flow",
                                 description: "Test checkout flow",
-                                severity: "Low"
+                                severity: "Low",
+                                asignee: ""
                             }
                         ]
                     },
@@ -112,19 +116,22 @@
                                 id: 6,
                                 title: "Design shopping cart web",
                                 description: "Design shopping cart web",
-                                severity: "Low"
+                                severity: "Low",
+                                asignee: ""
                             },
                             {
                                 id: 7,
                                 title: "Modify discount to checkout page",
                                 description: "Modify discount to checkout page",
-                                severity: "Low"
+                                severity: "Low",
+                                asignee: ""
                             },
                             {
                                 id: 8,
                                 title: "Integrations",
                                 description: "Provide documentation on integrations",
-                                severity: "Medium"
+                                severity: "Medium",
+                                asignee: ""
                             }
                         ]
                     },
@@ -135,31 +142,36 @@
                                 id: 9,
                                 title: "Creating app",
                                 description: "Creating app",
-                                severity: "Medium"
+                                severity: "Medium",
+                                asignee: ""
                             },
                             {
                                 id: 10,
                                 title: "Connecting server",
                                 description: "Connecting server",
-                                severity: "High"
+                                severity: "High",
+                                asignee: ""
                             },
                             {
                                 id: 11,
                                 title: "Response from API",
                                 description: "Response from API",
-                                severity: "High"
+                                severity: "High",
+                                asignee: ""
                             },
                             {
                                 id: 12,
                                 title: "Designing LOGO",
                                 description: "Designing LOGO",
-                                severity: "Low"
+                                severity: "Low",
+                                asignee: ""
                             },
                             {
                                 id: 13,
                                 title: "Create social networks",
                                 description: "Create social networks",
-                                severity: "Low"
+                                severity: "Low",
+                                asignee: ""
                             }
                         ]
                     },
@@ -170,19 +182,22 @@
                                 id: 14,
                                 title: "Apply styles",
                                 description: "Apply styles",
-                                severity: "Low"
+                                severity: "Low",
+                                asignee: ""
                             },
                             {
                                 id: 15,
                                 title: "Store data in DB",
                                 description: "Store data in DB",
-                                severity: "Medium"
+                                severity: "Medium",
+                                asignee: ""
                             },
                             {
                                 id: 16,
                                 title: "Develop autosave",
                                 description: "Develop autosave",
-                                severity: "High"
+                                severity: "High",
+                                asignee: ""
                             }
                         ]
                     }
@@ -200,11 +215,22 @@
                     color = "green";
                 }
                 return { color };
+            },
+            fetchData: function (users) {
+                this.users = users;
+                for (var i = 0; i < this.columns.length; i++) {
+                    for (var j = 0; j < this.columns[i].tasks.length; j++) {
+                        console.log(this.columns[i].tasks[j].asignee);
+                        this.columns[i].tasks[j].asignee = this.users[Math.floor(Math.random() * (9 - 0 + 1)) + 0].name;
+                        console.log(this.columns[i].tasks[j].asignee);
+                    }
+                }
             }
         },
         created() {
+
             this.$http.get('https://jsonplaceholder.typicode.com/users').then(function (data) {
-                this.users = data.body.slice(0,10)
+                this.fetchData(data.body);
             })
         }
     };
@@ -224,6 +250,7 @@
     .draggable {
         text-align: center;
         justify-content: center;
+        text-align: center;
     }
 
     .firstDiv button {
@@ -244,6 +271,9 @@
         border-radius: 0.5rem;
         background-color: rgb(204,204,255);
         width: 50%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 
     .firstP {
@@ -253,11 +283,6 @@
         text-align: center;
     }
 
-    .kanban {
-        margin-top: 0.75rem;
-        cursor: move;
-        width: 350px;
-    }
 
     .column-width {
         min-width: 320px;
@@ -311,20 +336,45 @@
     .red {
         background-color: red;
         width: inherit;
-        padding: 10px;
         margin-top: 20px;
-        height: 50px;
+        height: 60px;
     }
     .green {
-        background-color: green;
+        background-color: limegreen;
         width: inherit;
         margin-top: 20px;
-        height: 50px;
+        height: 60px;
     }
     .yellow {
         background-color: yellow;
         width: inherit;
         margin-top: 20px;
-        height: 50px;
+        height: 60px;
+    }
+    .kanbanred {
+        background-color: red;
+        width: inherit;
+        margin-top: 20px;
+        margin-top: 0.75rem;
+        cursor: move;
+        height: 80px;
+    }
+
+    .kanbangreen {
+        background-color: limegreen;
+        width: inherit;
+        margin-top: 20px;
+        margin-top: 0.75rem;
+        cursor: move;
+        height: 80px;
+    }
+
+    .kanbanyellow {
+        background-color: yellow;
+        width: inherit;
+        margin-top: 20px;
+        margin-top: 0.75rem;
+        cursor: move;
+        height: 80px;
     }
 </style>

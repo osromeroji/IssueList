@@ -27,6 +27,7 @@
         line-height: 1rem;
         align-items: center;
         font-weight: 600;
+        
     }
 
     .textoCard {

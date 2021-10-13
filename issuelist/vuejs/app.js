@@ -164,12 +164,17 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuedraggable */ "../../../../../node_modules/vuedraggable/dist/vuedraggable.umd.js");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_kanban_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/kanban.vue */ "./src/components/kanban.vue");
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -246,27 +251,32 @@ var url = '@Url.RouteUrl("Default")';
           id: 1,
           title: "Add discount code to checkout page",
           description: "Add discount code to checkout page",
-          severity: "High"
+          severity: "High",
+          asignee: ""
         }, {
           id: 2,
           title: "Provide documentation on integrations",
           description: "Provide documentation on integrations",
-          severity: "Medium"
+          severity: "Medium",
+          asignee: ""
         }, {
           id: 3,
           title: "Design shopping cart dropdown",
           description: "Design shopping cart dropdown",
-          severity: "High"
+          severity: "High",
+          asignee: ""
         }, {
           id: 4,
           title: "Add discount code to checkout page",
           description: "Add discount code to checkout page",
-          severity: "Low"
+          severity: "Low",
+          asignee: ""
         }, {
           id: 5,
           title: "Test checkout flow",
           description: "Test checkout flow",
-          severity: "Low"
+          severity: "Low",
+          asignee: ""
         }]
       }, {
         title: "To do",
@@ -274,17 +284,20 @@ var url = '@Url.RouteUrl("Default")';
           id: 6,
           title: "Design shopping cart web",
           description: "Design shopping cart web",
-          severity: "Low"
+          severity: "Low",
+          asignee: ""
         }, {
           id: 7,
           title: "Modify discount to checkout page",
           description: "Modify discount to checkout page",
-          severity: "Low"
+          severity: "Low",
+          asignee: ""
         }, {
           id: 8,
           title: "Integrations",
           description: "Provide documentation on integrations",
-          severity: "Medium"
+          severity: "Medium",
+          asignee: ""
         }]
       }, {
         title: "Doing",
@@ -292,27 +305,32 @@ var url = '@Url.RouteUrl("Default")';
           id: 9,
           title: "Creating app",
           description: "Creating app",
-          severity: "Medium"
+          severity: "Medium",
+          asignee: ""
         }, {
           id: 10,
           title: "Connecting server",
           description: "Connecting server",
-          severity: "High"
+          severity: "High",
+          asignee: ""
         }, {
           id: 11,
           title: "Response from API",
           description: "Response from API",
-          severity: "High"
+          severity: "High",
+          asignee: ""
         }, {
           id: 12,
           title: "Designing LOGO",
           description: "Designing LOGO",
-          severity: "Low"
+          severity: "Low",
+          asignee: ""
         }, {
           id: 13,
           title: "Create social networks",
           description: "Create social networks",
-          severity: "Low"
+          severity: "Low",
+          asignee: ""
         }]
       }, {
         title: "Done",
@@ -320,17 +338,20 @@ var url = '@Url.RouteUrl("Default")';
           id: 14,
           title: "Apply styles",
           description: "Apply styles",
-          severity: "Low"
+          severity: "Low",
+          asignee: ""
         }, {
           id: 15,
           title: "Store data in DB",
           description: "Store data in DB",
-          severity: "Medium"
+          severity: "Medium",
+          asignee: ""
         }, {
           id: 16,
           title: "Develop autosave",
           description: "Develop autosave",
-          severity: "High"
+          severity: "High",
+          asignee: ""
         }]
       }]
     };
@@ -350,11 +371,22 @@ var url = '@Url.RouteUrl("Default")';
       return {
         color: color
       };
+    },
+    fetchData: function fetchData(users) {
+      this.users = users;
+
+      for (var i = 0; i < this.columns.length; i++) {
+        for (var j = 0; j < this.columns[i].tasks.length; j++) {
+          console.log(this.columns[i].tasks[j].asignee);
+          this.columns[i].tasks[j].asignee = this.users[Math.floor(Math.random() * (9 - 0 + 1)) + 0].name;
+          console.log(this.columns[i].tasks[j].asignee);
+        }
+      }
     }
   },
   created: function created() {
     this.$http.get('https://jsonplaceholder.typicode.com/users').then(function (data) {
-      this.users = data.body.slice(0, 10);
+      this.fetchData(data.body);
     });
   }
 });
@@ -415,6 +447,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -426,18 +460,19 @@ __webpack_require__.r(__webpack_exports__);
       default: function _default() {
         return {};
       }
-    }
+    },
+    colorFondo: String,
+    asigneeName: String
   },
   computed: {
     cardColor: function cardColor() {
       var mappings = {
-        Design: "purple",
-        "Feature Request": "teal",
-        Backend: "blue",
-        QA: "green",
+        "High": "red",
+        "Medium": "yellow",
+        "Low": "green",
         default: "teal"
       };
-      return mappings[this.task.type] || mappings.default;
+      return mappings[this.task.severity] || mappings.default;
     }
   }
 });
@@ -460,7 +495,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "app" } }, [
-    _vm._m(0),
     _c(
       "div",
       { staticClass: "tab" },
@@ -506,7 +540,7 @@ var render = function() {
                   yellow: task.severity === "Medium",
                   green: task.severity === "Low"
                 },
-                attrs: { task: task }
+                attrs: { task: task, asigneeName: task.asignee }
               })
             }),
             1
@@ -527,6 +561,7 @@ var render = function() {
           ]
         },
         [
+          _vm._m(0),
           _c(
             "div",
             { staticClass: "secondDiv" },
@@ -552,8 +587,12 @@ var render = function() {
                     _vm._l(column.tasks, function(task) {
                       return _c("kanban", {
                         key: task.id,
-                        staticClass: "kanban",
-                        attrs: { task: task }
+                        class: {
+                          kanbanred: task.severity === "High",
+                          kanbanyellow: task.severity === "Medium",
+                          kanbangreen: task.severity === "Low"
+                        },
+                        attrs: { task: task, asigneeName: task.asignee }
                       })
                     }),
                     1
@@ -638,34 +677,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mainDiv" }, [
-    _c("div", { staticClass: "secondDiv" }, [
-      _c("p", { staticClass: "firstP" }, [_vm._v(_vm._s(_vm.task.title))]),
-      _c("img", {
-        staticClass: "firstImage",
-        attrs: {
-          src:
-            "https://pickaface.net/gallery/avatar/unr_sample_161118_2054_ynlrg.png",
-          alt: "Avatar"
-        }
-      })
-    ]),
-    _c(
-      "div",
-      { staticClass: "thirdDiv" },
-      [
-        _c("span", { staticClass: "firstSpan" }, [
-          _vm._v(_vm._s(_vm.task.date))
-        ]),
-        _vm.task.type
-          ? _c("card", { attrs: { color: _vm.cardColor } }, [
-              _vm._v(_vm._s(_vm.task.type))
-            ])
-          : _vm._e()
-      ],
-      1
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "mainDiv" },
+    [
+      _vm.task.severity
+        ? _c(
+            "card",
+            { class: _vm.colorFondo, attrs: { color: _vm.cardColor } },
+            [_vm._v(_vm._s(_vm.task.severity))]
+          )
+        : _vm._e(),
+      _c("h1", { staticClass: "firstP" }, [_vm._v(_vm._s(_vm.task.title))]),
+      _c("h3", [_vm._v(_vm._s(_vm.asigneeName))])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -685,7 +712,7 @@ render._withStripped = true
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.firstDiv[data-v-7ba5bd90] {\n    padding-top: 10px;\n    margin-left: 20px;\n    margin-bottom: -1px;\n}\n.firstDiv input[data-v-7ba5bd90] {\n        width: 250px;\n}\n.draggable[data-v-7ba5bd90] {\n    text-align: center;\n    justify-content: center;\n}\n.firstDiv button[data-v-7ba5bd90] {\n    width: 80px;\n}\n.secondDiv[data-v-7ba5bd90] {\n    padding-bottom: 3rem;\n    display: flex;\n    min-height: 100vh;\n}\n.thirdDiv[data-v-7ba5bd90] {\n    padding-bottom: 3rem;\n    padding-left: 0.75rem;\n    padding-right: 0.75rem;\n    margin: 20px;\n    border-radius: 0.5rem;\n    background-color: rgb(204,204,255);\n    width: 50%;\n}\n.firstP[data-v-7ba5bd90] {\n    color: rgba(55, 65, 81);\n    font-size: 1.5rem;\n    font-weight: 600;\n    text-align: center;\n}\n.kanban[data-v-7ba5bd90] {\n    margin-top: 0.75rem;\n    cursor: move;\n    width: 350px;\n}\n.column-width[data-v-7ba5bd90] {\n    min-width: 320px;\n    width: 320px;\n}\n.issueListElement[data-v-7ba5bd90] {\n    width: 100%;\n}\n/* Unfortunately @apply cannot be setup in codesandbox,\nbut you'd use \"@apply border opacity-50 border-blue-500 bg-gray-200\" here */\n.ghost-card[data-v-7ba5bd90] {\n    opacity: 0.5;\n    background: #F7FAFC;\n    border: 1px solid #4299e1;\n}\n/* Style the tab */\n.tab[data-v-7ba5bd90] {\n    overflow: hidden;\n    border: 1px solid #ccc;\n    background-color: #f1f1f1;\n}\n\n    /* Style the buttons that are used to open the tab content */\n.tab button[data-v-7ba5bd90] {\n        background-color: inherit;\n        float: left;\n        border: none;\n        outline: none;\n        cursor: pointer;\n        padding: 14px 16px;\n        transition: 0.3s;\n}\n\n        /* Change background color of buttons on hover */\n.tab button[data-v-7ba5bd90]:hover {\n            background-color: #ddd;\n}\n\n        /* Create an active/current tablink class */\n.tab button.active[data-v-7ba5bd90] {\n            background-color: #ccc;\n}\n\n/* Style the tab content */\n.tabcontent[data-v-7ba5bd90] {\n    display: none;\n    padding: 6px 12px;\n    border: 1px solid #ccc;\n    border-top: none;\n}\n.red[data-v-7ba5bd90] {\n    background-color: red;\n    width: inherit;\n    padding: 10px;\n    margin-top: 20px;\n    height: 50px;\n}\n.green[data-v-7ba5bd90] {\n    background-color: green;\n    width: inherit;\n    margin-top: 20px;\n    height: 50px;\n}\n.yellow[data-v-7ba5bd90] {\n    background-color: yellow;\n    width: inherit;\n    margin-top: 20px;\n    height: 50px;\n}\n", ""]);
+exports.push([module.i, "\n.firstDiv[data-v-7ba5bd90] {\n    padding-top: 10px;\n    margin-left: 20px;\n    margin-bottom: -1px;\n}\n.firstDiv input[data-v-7ba5bd90] {\n        width: 250px;\n}\n.draggable[data-v-7ba5bd90] {\n    text-align: center;\n    justify-content: center;\n    text-align: center;\n}\n.firstDiv button[data-v-7ba5bd90] {\n    width: 80px;\n}\n.secondDiv[data-v-7ba5bd90] {\n    padding-bottom: 3rem;\n    display: flex;\n    min-height: 100vh;\n}\n.thirdDiv[data-v-7ba5bd90] {\n    padding-bottom: 3rem;\n    padding-left: 0.75rem;\n    padding-right: 0.75rem;\n    margin: 20px;\n    border-radius: 0.5rem;\n    background-color: rgb(204,204,255);\n    width: 50%;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n}\n.firstP[data-v-7ba5bd90] {\n    color: rgba(55, 65, 81);\n    font-size: 1.5rem;\n    font-weight: 600;\n    text-align: center;\n}\n.column-width[data-v-7ba5bd90] {\n    min-width: 320px;\n    width: 320px;\n}\n.issueListElement[data-v-7ba5bd90] {\n    width: 100%;\n}\n/* Unfortunately @apply cannot be setup in codesandbox,\nbut you'd use \"@apply border opacity-50 border-blue-500 bg-gray-200\" here */\n.ghost-card[data-v-7ba5bd90] {\n    opacity: 0.5;\n    background: #F7FAFC;\n    border: 1px solid #4299e1;\n}\n/* Style the tab */\n.tab[data-v-7ba5bd90] {\n    overflow: hidden;\n    border: 1px solid #ccc;\n    background-color: #f1f1f1;\n}\n\n    /* Style the buttons that are used to open the tab content */\n.tab button[data-v-7ba5bd90] {\n        background-color: inherit;\n        float: left;\n        border: none;\n        outline: none;\n        cursor: pointer;\n        padding: 14px 16px;\n        transition: 0.3s;\n}\n\n        /* Change background color of buttons on hover */\n.tab button[data-v-7ba5bd90]:hover {\n            background-color: #ddd;\n}\n\n        /* Create an active/current tablink class */\n.tab button.active[data-v-7ba5bd90] {\n            background-color: #ccc;\n}\n\n/* Style the tab content */\n.tabcontent[data-v-7ba5bd90] {\n    display: none;\n    padding: 6px 12px;\n    border: 1px solid #ccc;\n    border-top: none;\n}\n.red[data-v-7ba5bd90] {\n    background-color: red;\n    width: inherit;\n    margin-top: 20px;\n    height: 60px;\n}\n.green[data-v-7ba5bd90] {\n    background-color: limegreen;\n    width: inherit;\n    margin-top: 20px;\n    height: 60px;\n}\n.yellow[data-v-7ba5bd90] {\n    background-color: yellow;\n    width: inherit;\n    margin-top: 20px;\n    height: 60px;\n}\n.kanbanred[data-v-7ba5bd90] {\n    background-color: red;\n    width: inherit;\n    margin-top: 20px;\n    margin-top: 0.75rem;\n    cursor: move;\n    height: 80px;\n}\n.kanbangreen[data-v-7ba5bd90] {\n    background-color: limegreen;\n    width: inherit;\n    margin-top: 20px;\n    margin-top: 0.75rem;\n    cursor: move;\n    height: 80px;\n}\n.kanbanyellow[data-v-7ba5bd90] {\n    background-color: yellow;\n    width: inherit;\n    margin-top: 20px;\n    margin-top: 0.75rem;\n    cursor: move;\n    height: 80px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -721,7 +748,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.mainDiv[data-v-4c6d45c7] {\n    box-shadow: 0 0 5px 5px #666;\n    border-color: white;\n    border-style: solid;\n    border-width: 0.2px;\n    padding-bottom: 5px;\n    padding-top: 3px;\n    padding-left: 0.75rem;\n    padding-right: 0.75rem;\n    background-color: gray;\n    width: 350px;\n    border-radius: 5px;\n}\n.secondDiv[data-v-4c6d45c7] {\n    justify-content: space-between;\n    background-color: red;\n}\n.thirdDiv[data-v-4c6d45c7] {\n    display: flex;\n    align-items: center;\n    justify-content: space between;\n    margin-top: 1rem;\n}\n.firstP[data-v-4c6d45c7] {\n    font-size: 0.875rem;\n    line-height: 1.25rem;\n    letter-spacing: 0.025em;\n    font-weight: 600;\n    color: rgba(55, 65, 81);\n}\n.firstImage[data-v-4c6d45c7] {\n    width: 1.5rem;\n    height: 1.5rem;\n    margin-left: 0.75rem;\n    border-radius: 9999px;\n}\n.firstSpan[data-v-4c6d45c7] {\n    color: rgba(75, 85, 99);\n    font-size: 0.875rem;\n    line-height: 1.25rem;\n}\n", ""]);
+exports.push([module.i, "\n.mainDiv[data-v-4c6d45c7] {\n    box-shadow: 0 0 5px 5px #666;\n    border-color: white;\n    border-style: solid;\n    border-width: 0.2px;\n    /*padding-bottom: 5px;\n    padding-top: 3px;*/\n    /*padding-left: 0.75rem;*/\n    /*padding-right: 0.75rem;*/\n    background-color: gray;\n    width: 350px;\n    border-radius: 5px;\n}\n.secondDiv[data-v-4c6d45c7] {\n    justify-content: center;\n}\n.thirdDiv[data-v-4c6d45c7] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    /*margin-top: 1rem;*/\n    background-color: black;\n}\n.firstP[data-v-4c6d45c7], h3[data-v-4c6d45c7] {\n    font-size: 0.875rem;\n    line-height: 1.25rem;\n    letter-spacing: 0.025em;\n    font-weight: 600;\n}\n.firstImage[data-v-4c6d45c7] {\n    width: 1.5rem;\n    height: 1.5rem;\n    margin-left: 0.75rem;\n    border-radius: 9999px;\n}\n.firstSpan[data-v-4c6d45c7] {\n    color: rgba(75, 85, 99);\n    font-size: 0.875rem;\n    line-height: 1.25rem;\n}\n.red[data-v-4c6d45c7] {\n    background-color: red;\n    width: inherit;\n    margin-top: 20px;\n    height: 50px;\n}\n.green[data-v-4c6d45c7] {\n    background-color: green;\n    width: inherit;\n    margin-top: 20px;\n    height: 50px;\n}\n.yellow[data-v-4c6d45c7] {\n    background-color: yellow;\n    width: inherit;\n    margin-top: 20px;\n    height: 50px;\n}\n.card[data-v-4c6d45c7]{\n    float: right;\n    margin: 5px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

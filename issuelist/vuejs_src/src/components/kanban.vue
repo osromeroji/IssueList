@@ -1,16 +1,18 @@
 ﻿<template>
     <div class="mainDiv">
-        <div class="secondDiv">
-            <p class="firstP">{{task.title}}</p>
 
-            <img class="firstImage"
-                 src="https://pickaface.net/gallery/avatar/unr_sample_161118_2054_ynlrg.png"
-                 alt="Avatar">
-        </div>
-        <div class="thirdDiv">
-            <span class="firstSpan">{{task.date}}</span>
-            <card v-if="task.type" :color="cardColor">{{task.type}}</card>
-        </div>
+        <card v-if="task.severity" :color="cardColor" :class="colorFondo">{{task.severity}}</card>
+        <h1 class="firstP">{{task.title}}</h1>
+        <h3>{{ asigneeName }}</h3>
+        <!--<div class="secondDiv">-->
+        <!--<img class="firstImage"
+    src="https://pickaface.net/gallery/avatar/unr_sample_161118_2054_ynlrg.png"
+    alt="Avatar">-->
+        <!--</div>-->
+        <!--<div class="thirdDiv">-->
+        <!--<span class="firstSpan"></span>
+    <card v-if="task.severity" :color="cardColor" :class="colorFondo"></card>-->
+        <!--</div>-->
     </div>
 </template>
 <script>
@@ -23,18 +25,19 @@ export default {
     task: {
       type: Object,
       default: () => ({})
-    }
+      },
+    colorFondo: String,
+    asigneeName: String
   },
   computed: {
     cardColor() {
       const mappings = {
-        Design: "purple",
-        "Feature Request": "teal",
-        Backend: "blue",
-        QA: "green",
-        default: "teal"
+          "High": "red",
+          "Medium": "yellow",
+          "Low": "green",
+          default: "teal"
       };
-      return mappings[this.task.type] || mappings.default;
+      return mappings[this.task.severity] || mappings.default;
     }
   }
 };
@@ -45,33 +48,34 @@ export default {
         border-color: white;
         border-style: solid;
         border-width: 0.2px;
-        padding-bottom: 5px;
-        padding-top: 3px;
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
+        /*padding-bottom: 5px;
+        padding-top: 3px;*/
+        /*padding-left: 0.75rem;*/
+        /*padding-right: 0.75rem;*/
         background-color: gray;
         width: 350px;
         border-radius: 5px;
+
     }
 
     .secondDiv {
-        justify-content: space-between;
-        background-color: red;
+        justify-content: center;
+        
     }
 
     .thirdDiv {
         display: flex;
         align-items: center;
-        justify-content: space between;
-        margin-top: 1rem;
+        justify-content: center;
+        /*margin-top: 1rem;*/
+        background-color: black;
     }
 
-    .firstP {
+    .firstP, h3 {
         font-size: 0.875rem;
         line-height: 1.25rem;
         letter-spacing: 0.025em;
         font-weight: 600;
-        color: rgba(55, 65, 81);
     }
 
     .firstImage {
@@ -85,5 +89,29 @@ export default {
         color: rgba(75, 85, 99);
         font-size: 0.875rem;
         line-height: 1.25rem;
+    }
+    .red {
+        background-color: red;
+        width: inherit;
+        margin-top: 20px;
+        height: 50px;
+    }
+
+    .green {
+        background-color: green;
+        width: inherit;
+        margin-top: 20px;
+        height: 50px;
+    }
+
+    .yellow {
+        background-color: yellow;
+        width: inherit;
+        margin-top: 20px;
+        height: 50px;
+    }
+    .card{
+        float: right;
+        margin: 5px;
     }
 </style>
