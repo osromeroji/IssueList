@@ -227,6 +227,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -245,6 +248,9 @@ var url = '@Url.RouteUrl("Default")';
       currentTab: 0,
       tabs: ['List', 'Kanban'],
       users: [],
+      numero: 17,
+      newSeverity: "",
+      newUser: "Oscar Romero",
       columns: [{
         title: "Backlog",
         tasks: [{
@@ -377,11 +383,25 @@ var url = '@Url.RouteUrl("Default")';
 
       for (var i = 0; i < this.columns.length; i++) {
         for (var j = 0; j < this.columns[i].tasks.length; j++) {
-          console.log(this.columns[i].tasks[j].asignee);
           this.columns[i].tasks[j].asignee = this.users[Math.floor(Math.random() * (9 - 0 + 1)) + 0].name;
-          console.log(this.columns[i].tasks[j].asignee);
         }
       }
+    },
+    readRefs: function readRefs() {
+      this.numero += 1;
+      this.columns[0].tasks.push({
+        Id: this.numero,
+        title: this.$refs.newactivity.value,
+        description: this.$refs.newactivity.value,
+        severity: this.newSeverity,
+        asignee: this.newUser
+      });
+    },
+    onChangeSeverity: function onChangeSeverity(event) {
+      this.newSeverity = event.target.value;
+    },
+    onChangeUser: function onChangeUser(event) {
+      this.newUser = event.target.value;
     }
   },
   created: function created() {
@@ -561,7 +581,46 @@ var render = function() {
           ]
         },
         [
-          _vm._m(0),
+          _c("div", { staticClass: "firstDiv" }, [
+            _c("input", { ref: "newactivity", attrs: { type: "text" } }),
+            _c("button", { on: { click: _vm.readRefs } }, [_vm._v("Add")]),
+            _c("br"),
+            _c(
+              "select",
+              {
+                attrs: { name: "severity", id: "severity" },
+                on: {
+                  change: function($event) {
+                    return _vm.onChangeSeverity($event)
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "High" } }, [_vm._v("High")]),
+                _c("option", { attrs: { value: "Medium" } }, [
+                  _vm._v("Medium")
+                ]),
+                _c("option", { attrs: { value: "Low" } }, [_vm._v("Low")])
+              ]
+            ),
+            _c(
+              "select",
+              {
+                attrs: { name: "users", id: "users" },
+                on: {
+                  change: function($event) {
+                    return _vm.onChangeUser($event)
+                  }
+                }
+              },
+              _vm._l(_vm.users, function(user) {
+                return _c("option", { key: user.name }, [
+                  _vm._v(_vm._s(user.name))
+                ])
+              }),
+              0
+            )
+          ]),
           _c(
             "div",
             { staticClass: "secondDiv" },
@@ -608,17 +667,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "firstDiv" }, [
-      _c("input", { attrs: { type: "text" } }),
-      _c("button", [_vm._v("A�adir")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

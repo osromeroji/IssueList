@@ -20,8 +20,17 @@
 
             <div v-show="currentTab === 1">
                 <div class="firstDiv">
-                    <input type="text" />
-                    <button>Añadir</button>
+                    <input type="text" ref="newactivity" />
+
+                    <button v-on:click="readRefs">Add</button><br />
+                    <select name="severity" id="severity" @change="onChangeSeverity($event)">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                    <select name="users" id="users" @change="onChangeUser($event)">
+                        <option v-for="user in users" :key="user.name">{{user.name}}</option>
+                    </select>
                 </div>
 
                 <div class="secondDiv">
@@ -66,7 +75,10 @@
                 mensaje: 'Hola mundo desde vue',
                 currentTab: 0,
                 tabs: ['List', 'Kanban'],
-                users : [],
+                users: [],
+                numero : 17,
+                newSeverity : "",
+                newUser : "Oscar Romero",
                 columns: [
                     {
                         title: "Backlog",
@@ -220,15 +232,22 @@
                 this.users = users;
                 for (var i = 0; i < this.columns.length; i++) {
                     for (var j = 0; j < this.columns[i].tasks.length; j++) {
-                        console.log(this.columns[i].tasks[j].asignee);
                         this.columns[i].tasks[j].asignee = this.users[Math.floor(Math.random() * (9 - 0 + 1)) + 0].name;
-                        console.log(this.columns[i].tasks[j].asignee);
                     }
                 }
+            },
+            readRefs: function () {
+                this.numero += 1;
+                this.columns[0].tasks.push({ Id: this.numero, title: this.$refs.newactivity.value, description: this.$refs.newactivity.value, severity: this.newSeverity, asignee: this.newUser });
+            },
+            onChangeSeverity(event) {
+                this.newSeverity = event.target.value;
+            },
+            onChangeUser(event) {
+                this.newUser = event.target.value;
             }
         },
         created() {
-
             this.$http.get('https://jsonplaceholder.typicode.com/users').then(function (data) {
                 this.fetchData(data.body);
             })
