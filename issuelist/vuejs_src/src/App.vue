@@ -301,11 +301,11 @@
         text-align: center;
     }
 
-
     .column-width {
         min-width: 320px;
         width: 320px;
     }
+
     .issueListElement {
         width: 100%;
     }
@@ -321,6 +321,7 @@
         border: 1px solid #ccc;
         background-color: #f1f1f1;
     }
+
     .tab button {
         background-color: inherit;
         float: left;
@@ -347,6 +348,7 @@
         border: 1px solid #ccc;
         border-top: none;
     }
+
     .red {
         background-color: red;
         width: inherit;
