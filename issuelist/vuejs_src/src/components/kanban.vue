@@ -45,10 +45,6 @@ export default {
         border-style: solid;
         border-width: 0.2px;
         padding: -1;
-        /*padding-bottom: 5px;
-        padding-top: 3px;*/
-        /*padding-left: 0.75rem;*/
-        /*padding-right: 0.75rem;*/
         background-color: gray;
         width: 350px;
         border-radius: 5px;
@@ -63,13 +59,11 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        /*margin-top: 1rem;*/
         background-color: black;
     }
 
     .firstP, h3 {
         font-size: 0.875rem;
-        /*line-height: 1.25rem;*/
         letter-spacing: 0.025em;
         font-weight: 600;
     }
@@ -84,26 +78,22 @@ export default {
     .firstSpan {
         color: rgba(75, 85, 99);
         font-size: 0.875rem;
-        /*line-height: 1.25rem;*/
     }
     .red {
         background-color: red;
         width: inherit;
-        /*margin-top: 10px;*/
         height: 50px;
     }
 
     .green {
         background-color: green;
         width: inherit;
-        /*margin-top: 10px;*/
         height: 50px;
     }
 
     .yellow {
         background-color: yellow;
         width: inherit;
-       /* margin-top: 5px;*/
         height: 50px;
     }
     .divcardsEditable {
