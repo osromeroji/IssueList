@@ -1,13 +1,13 @@
 ﻿<template>
     <div class="mainDiv">
         <div class="divcards">
-            <card v-if="task.severity" :color="cardColor" :class="colorFondo">{{task.severity}}</card><br />
-            <card>{{ asigneeName }}</card>
+            <p class="divcardsEditable" v-if="task.severity">{{task.severity}}</p><br />
+            <card class="divcardsEditable" v-model="asigneeName">{{ asigneeName }}</card>
         </div>
 
         <div class="divtitulo">
-            <h1 class="firstP">{{task.title}}</h1>
-            <h3>{{ task.description }}</h3>
+            <card v-if="task.severity" :color="cardColor" :class="colorFondo" v-model="task.title">{{task.title}}</card><br />
+            <card v-model="task.description">{{ task.description }}</card>
         </div>
     </div>
 </template>
@@ -106,10 +106,14 @@ export default {
        /* margin-top: 5px;*/
         height: 50px;
     }
-    .card {
+    .divcardsEditable {
         float: right;
         margin: 2px;
         background-color: white;
+    }
+    .divctitulo card {
+        float: left;
+        margin: 2px;
     }
     .divtitulo {
         float: left;
