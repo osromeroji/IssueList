@@ -39,14 +39,12 @@
                          class="thirdDiv">
                         <h1 class="firstP">{{column.title}}</h1>
                         <draggable class="draggable" dir:list="column.tasks" :animation="200" ghost-class="ghost-card" group="tasks">
-                            <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
                             <kanban v-for="(task) in column.tasks"
                                     :key="task.id"
                                     :task="task"
                                     v-bind:asigneeName="task.asignee"
                                     :class="{kanbanred: task.severity === 'High', kanbanyellow: task.severity === 'Medium' , kanbangreen: task.severity === 'Low'}">
                             </kanban>
-                            <!-- </transition-group> -->
                         </draggable>
                     </div>
                 </div>
@@ -85,14 +83,14 @@
                         tasks: [
                             {
                                 id: 1,
-                                title: "Add discount code to checkout page",
+                                title: "Add discount code",
                                 description: "Add discount code to checkout page",
                                 severity: "High",
                                 asignee: ""
                             },
                             {
                                 id: 2,
-                                title: "Provide documentation on integrations",
+                                title: "Provide documentation",
                                 description: "Provide documentation on integrations",
                                 severity: "Medium",
                                 asignee: ""
@@ -106,7 +104,7 @@
                             },
                             {
                                 id: 4,
-                                title: "Add discount code to checkout page",
+                                title: "Add discount code",
                                 description: "Add discount code to checkout page",
                                 severity: "Low",
                                 asignee: ""
@@ -133,7 +131,7 @@
                             },
                             {
                                 id: 7,
-                                title: "Modify discount to checkout page",
+                                title: "Modify discount",
                                 description: "Modify discount to checkout page",
                                 severity: "Low",
                                 asignee: ""
@@ -193,13 +191,13 @@
                             {
                                 id: 14,
                                 title: "Apply styles",
-                                description: "Apply styles",
+                                description: "Apply styles to the web",
                                 severity: "Low",
                                 asignee: ""
                             },
                             {
                                 id: 15,
-                                title: "Store data in DB",
+                                title: "Store data",
                                 description: "Store data in DB",
                                 severity: "Medium",
                                 asignee: ""
@@ -207,7 +205,7 @@
                             {
                                 id: 16,
                                 title: "Develop autosave",
-                                description: "Develop autosave",
+                                description: "Develop autosave in the app",
                                 severity: "High",
                                 asignee: ""
                             }
@@ -261,10 +259,11 @@
         margin-left: 20px;
         margin-bottom: -1px;
     }
+    
+    .firstDiv input {
+        width: 250px;
 
-        .firstDiv input {
-            width: 250px;
-        }
+    }
 
     .draggable {
         text-align: center;
@@ -310,42 +309,38 @@
     .issueListElement {
         width: 100%;
     }
-    /* Unfortunately @apply cannot be setup in codesandbox,
-    but you'd use "@apply border opacity-50 border-blue-500 bg-gray-200" here */
+
     .ghost-card {
         opacity: 0.5;
         background: #F7FAFC;
         border: 1px solid #4299e1;
     }
-    /* Style the tab */
+
     .tab {
         overflow: hidden;
         border: 1px solid #ccc;
         background-color: #f1f1f1;
     }
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+    
+    .tab button:hover {
+        background-color: #ddd;
 
-        /* Style the buttons that are used to open the tab content */
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-        }
+    }
+    
+    .tab button.active {
+        background-color: #ccc;
 
-            /* Change background color of buttons on hover */
-            .tab button:hover {
-                background-color: #ddd;
-            }
+    }
 
-            /* Create an active/current tablink class */
-            .tab button.active {
-                background-color: #ccc;
-            }
-
-    /* Style the tab content */
     .tabcontent {
         display: none;
         padding: 6px 12px;
@@ -358,18 +353,21 @@
         margin-top: 20px;
         height: 60px;
     }
+
     .green {
         background-color: limegreen;
         width: inherit;
         margin-top: 20px;
         height: 60px;
     }
+
     .yellow {
         background-color: yellow;
         width: inherit;
         margin-top: 20px;
         height: 60px;
     }
+
     .kanbanred {
         background-color: red;
         width: inherit;
@@ -377,6 +375,8 @@
         margin-top: 0.75rem;
         cursor: move;
         height: 80px;
+        min-height: 80px;
+        height: auto;
     }
 
     .kanbangreen {
@@ -386,6 +386,8 @@
         margin-top: 0.75rem;
         cursor: move;
         height: 80px;
+        min-height: 80px;
+        height: auto;
     }
 
     .kanbanyellow {
@@ -395,5 +397,7 @@
         margin-top: 0.75rem;
         cursor: move;
         height: 80px;
+        min-height: 80px;
+        height: auto;
     }
 </style>

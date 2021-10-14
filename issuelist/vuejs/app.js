@@ -228,8 +228,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -255,13 +253,13 @@ var url = '@Url.RouteUrl("Default")';
         title: "Backlog",
         tasks: [{
           id: 1,
-          title: "Add discount code to checkout page",
+          title: "Add discount code",
           description: "Add discount code to checkout page",
           severity: "High",
           asignee: ""
         }, {
           id: 2,
-          title: "Provide documentation on integrations",
+          title: "Provide documentation",
           description: "Provide documentation on integrations",
           severity: "Medium",
           asignee: ""
@@ -273,7 +271,7 @@ var url = '@Url.RouteUrl("Default")';
           asignee: ""
         }, {
           id: 4,
-          title: "Add discount code to checkout page",
+          title: "Add discount code",
           description: "Add discount code to checkout page",
           severity: "Low",
           asignee: ""
@@ -294,7 +292,7 @@ var url = '@Url.RouteUrl("Default")';
           asignee: ""
         }, {
           id: 7,
-          title: "Modify discount to checkout page",
+          title: "Modify discount",
           description: "Modify discount to checkout page",
           severity: "Low",
           asignee: ""
@@ -343,19 +341,19 @@ var url = '@Url.RouteUrl("Default")';
         tasks: [{
           id: 14,
           title: "Apply styles",
-          description: "Apply styles",
+          description: "Apply styles to the web",
           severity: "Low",
           asignee: ""
         }, {
           id: 15,
-          title: "Store data in DB",
+          title: "Store data",
           description: "Store data in DB",
           severity: "Medium",
           asignee: ""
         }, {
           id: 16,
           title: "Develop autosave",
-          description: "Develop autosave",
+          description: "Develop autosave in the app",
           severity: "High",
           asignee: ""
         }]
@@ -452,10 +450,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _card_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./card.vue */ "./src/components/card.vue");
-//
-//
-//
-//
 //
 //
 //
@@ -726,22 +720,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "mainDiv" },
-    [
-      _vm.task.severity
-        ? _c(
-            "card",
-            { class: _vm.colorFondo, attrs: { color: _vm.cardColor } },
-            [_vm._v(_vm._s(_vm.task.severity))]
-          )
-        : _vm._e(),
+  return _c("div", { staticClass: "mainDiv" }, [
+    _c(
+      "div",
+      { staticClass: "divcards" },
+      [
+        _vm.task.severity
+          ? _c(
+              "card",
+              { class: _vm.colorFondo, attrs: { color: _vm.cardColor } },
+              [_vm._v(_vm._s(_vm.task.severity))]
+            )
+          : _vm._e(),
+        _c("br"),
+        _c("card", [_vm._v(_vm._s(_vm.asigneeName))])
+      ],
+      1
+    ),
+    _c("div", { staticClass: "divtitulo" }, [
       _c("h1", { staticClass: "firstP" }, [_vm._v(_vm._s(_vm.task.title))]),
-      _c("h3", [_vm._v(_vm._s(_vm.asigneeName))])
-    ],
-    1
-  )
+      _c("h3", [_vm._v(_vm._s(_vm.task.description))])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -761,7 +761,7 @@ render._withStripped = true
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.firstDiv[data-v-7ba5bd90] {\n    padding-top: 10px;\n    margin-left: 20px;\n    margin-bottom: -1px;\n}\n.firstDiv input[data-v-7ba5bd90] {\n        width: 250px;\n}\n.draggable[data-v-7ba5bd90] {\n    text-align: center;\n    justify-content: center;\n    text-align: center;\n}\n.firstDiv button[data-v-7ba5bd90] {\n    width: 80px;\n}\n.secondDiv[data-v-7ba5bd90] {\n    padding-bottom: 3rem;\n    display: flex;\n    min-height: 100vh;\n}\n.thirdDiv[data-v-7ba5bd90] {\n    padding-bottom: 3rem;\n    padding-left: 0.75rem;\n    padding-right: 0.75rem;\n    margin: 20px;\n    border-radius: 0.5rem;\n    background-color: rgb(204,204,255);\n    width: 50%;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n}\n.firstP[data-v-7ba5bd90] {\n    color: rgba(55, 65, 81);\n    font-size: 1.5rem;\n    font-weight: 600;\n    text-align: center;\n}\n.column-width[data-v-7ba5bd90] {\n    min-width: 320px;\n    width: 320px;\n}\n.issueListElement[data-v-7ba5bd90] {\n    width: 100%;\n}\n/* Unfortunately @apply cannot be setup in codesandbox,\nbut you'd use \"@apply border opacity-50 border-blue-500 bg-gray-200\" here */\n.ghost-card[data-v-7ba5bd90] {\n    opacity: 0.5;\n    background: #F7FAFC;\n    border: 1px solid #4299e1;\n}\n/* Style the tab */\n.tab[data-v-7ba5bd90] {\n    overflow: hidden;\n    border: 1px solid #ccc;\n    background-color: #f1f1f1;\n}\n\n    /* Style the buttons that are used to open the tab content */\n.tab button[data-v-7ba5bd90] {\n        background-color: inherit;\n        float: left;\n        border: none;\n        outline: none;\n        cursor: pointer;\n        padding: 14px 16px;\n        transition: 0.3s;\n}\n\n        /* Change background color of buttons on hover */\n.tab button[data-v-7ba5bd90]:hover {\n            background-color: #ddd;\n}\n\n        /* Create an active/current tablink class */\n.tab button.active[data-v-7ba5bd90] {\n            background-color: #ccc;\n}\n\n/* Style the tab content */\n.tabcontent[data-v-7ba5bd90] {\n    display: none;\n    padding: 6px 12px;\n    border: 1px solid #ccc;\n    border-top: none;\n}\n.red[data-v-7ba5bd90] {\n    background-color: red;\n    width: inherit;\n    margin-top: 20px;\n    height: 60px;\n}\n.green[data-v-7ba5bd90] {\n    background-color: limegreen;\n    width: inherit;\n    margin-top: 20px;\n    height: 60px;\n}\n.yellow[data-v-7ba5bd90] {\n    background-color: yellow;\n    width: inherit;\n    margin-top: 20px;\n    height: 60px;\n}\n.kanbanred[data-v-7ba5bd90] {\n    background-color: red;\n    width: inherit;\n    margin-top: 20px;\n    margin-top: 0.75rem;\n    cursor: move;\n    height: 80px;\n}\n.kanbangreen[data-v-7ba5bd90] {\n    background-color: limegreen;\n    width: inherit;\n    margin-top: 20px;\n    margin-top: 0.75rem;\n    cursor: move;\n    height: 80px;\n}\n.kanbanyellow[data-v-7ba5bd90] {\n    background-color: yellow;\n    width: inherit;\n    margin-top: 20px;\n    margin-top: 0.75rem;\n    cursor: move;\n    height: 80px;\n}\n", ""]);
+exports.push([module.i, "\n.firstDiv[data-v-7ba5bd90] {\n    padding-top: 10px;\n    margin-left: 20px;\n    margin-bottom: -1px;\n}\n.firstDiv input[data-v-7ba5bd90] {\n    width: 250px;\n}\n.draggable[data-v-7ba5bd90] {\n    text-align: center;\n    justify-content: center;\n    text-align: center;\n}\n.firstDiv button[data-v-7ba5bd90] {\n    width: 80px;\n}\n.secondDiv[data-v-7ba5bd90] {\n    padding-bottom: 3rem;\n    display: flex;\n    min-height: 100vh;\n}\n.thirdDiv[data-v-7ba5bd90] {\n    padding-bottom: 3rem;\n    padding-left: 0.75rem;\n    padding-right: 0.75rem;\n    margin: 20px;\n    border-radius: 0.5rem;\n    background-color: rgb(204,204,255);\n    width: 50%;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n}\n.firstP[data-v-7ba5bd90] {\n    color: rgba(55, 65, 81);\n    font-size: 1.5rem;\n    font-weight: 600;\n    text-align: center;\n}\n.column-width[data-v-7ba5bd90] {\n    min-width: 320px;\n    width: 320px;\n}\n.issueListElement[data-v-7ba5bd90] {\n    width: 100%;\n}\n.ghost-card[data-v-7ba5bd90] {\n    opacity: 0.5;\n    background: #F7FAFC;\n    border: 1px solid #4299e1;\n}\n.tab[data-v-7ba5bd90] {\n    overflow: hidden;\n    border: 1px solid #ccc;\n    background-color: #f1f1f1;\n}\n.tab button[data-v-7ba5bd90] {\n    background-color: inherit;\n    float: left;\n    border: none;\n    outline: none;\n    cursor: pointer;\n    padding: 14px 16px;\n    transition: 0.3s;\n}\n.tab button[data-v-7ba5bd90]:hover {\n    background-color: #ddd;\n}\n.tab button.active[data-v-7ba5bd90] {\n    background-color: #ccc;\n}\n.tabcontent[data-v-7ba5bd90] {\n    display: none;\n    padding: 6px 12px;\n    border: 1px solid #ccc;\n    border-top: none;\n}\n.red[data-v-7ba5bd90] {\n    background-color: red;\n    width: inherit;\n    margin-top: 20px;\n    height: 60px;\n}\n.green[data-v-7ba5bd90] {\n    background-color: limegreen;\n    width: inherit;\n    margin-top: 20px;\n    height: 60px;\n}\n.yellow[data-v-7ba5bd90] {\n    background-color: yellow;\n    width: inherit;\n    margin-top: 20px;\n    height: 60px;\n}\n.kanbanred[data-v-7ba5bd90] {\n    background-color: red;\n    width: inherit;\n    margin-top: 20px;\n    margin-top: 0.75rem;\n    cursor: move;\n    height: 80px;\n    min-height: 80px;\n    height: auto;\n}\n.kanbangreen[data-v-7ba5bd90] {\n    background-color: limegreen;\n    width: inherit;\n    margin-top: 20px;\n    margin-top: 0.75rem;\n    cursor: move;\n    height: 80px;\n    min-height: 80px;\n    height: auto;\n}\n.kanbanyellow[data-v-7ba5bd90] {\n    background-color: yellow;\n    width: inherit;\n    margin-top: 20px;\n    margin-top: 0.75rem;\n    cursor: move;\n    height: 80px;\n    min-height: 80px;\n    height: auto;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -779,7 +779,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.card[data-v-5c8289c0] {\n    display: flex;\n    border-radius: 9999px;\n    padding: 3px;\n    height: 1.5rem;\n    font-size: 0.75rem;\n    line-height: 1rem;\n    align-items: center;\n    font-weight: 600;\n}\n.textoCard[data-v-5c8289c0] {\n    border-radius: 9999px;\n    height: 0.5rem;\n    width: 0.5rem;\n    margin-right: 0.25rem;\n}\n", ""]);
+exports.push([module.i, "\n.card[data-v-5c8289c0] {\n    display: flex;\n    border-radius: 9999px;\n    background-color: white;\n    height: 1.5rem;\n    font-size: 0.75rem;\n    line-height: 1rem;\n    align-items: center;\n    font-weight: 600;\n}\n.textoCard[data-v-5c8289c0] {\n    border-radius: 9999px;\n    height: 0.5rem;\n    width: 0.5rem;\n    margin-right: 0.25rem;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -797,7 +797,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.mainDiv[data-v-4c6d45c7] {\n    box-shadow: 0 0 5px 5px #666;\n    border-color: white;\n    border-style: solid;\n    border-width: 0.2px;\n    /*padding-bottom: 5px;\n    padding-top: 3px;*/\n    /*padding-left: 0.75rem;*/\n    /*padding-right: 0.75rem;*/\n    background-color: gray;\n    width: 350px;\n    border-radius: 5px;\n}\n.secondDiv[data-v-4c6d45c7] {\n    justify-content: center;\n}\n.thirdDiv[data-v-4c6d45c7] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    /*margin-top: 1rem;*/\n    background-color: black;\n}\n.firstP[data-v-4c6d45c7], h3[data-v-4c6d45c7] {\n    font-size: 0.875rem;\n    line-height: 1.25rem;\n    letter-spacing: 0.025em;\n    font-weight: 600;\n}\n.firstImage[data-v-4c6d45c7] {\n    width: 1.5rem;\n    height: 1.5rem;\n    margin-left: 0.75rem;\n    border-radius: 9999px;\n}\n.firstSpan[data-v-4c6d45c7] {\n    color: rgba(75, 85, 99);\n    font-size: 0.875rem;\n    line-height: 1.25rem;\n}\n.red[data-v-4c6d45c7] {\n    background-color: red;\n    width: inherit;\n    margin-top: 20px;\n    height: 50px;\n}\n.green[data-v-4c6d45c7] {\n    background-color: green;\n    width: inherit;\n    margin-top: 20px;\n    height: 50px;\n}\n.yellow[data-v-4c6d45c7] {\n    background-color: yellow;\n    width: inherit;\n    margin-top: 20px;\n    height: 50px;\n}\n.card[data-v-4c6d45c7]{\n    float: right;\n    margin: 5px;\n}\n", ""]);
+exports.push([module.i, "\n.mainDiv[data-v-4c6d45c7] {\n    box-shadow: 0 0 5px 5px #666;\n    border-color: white;\n    border-style: solid;\n    border-width: 0.2px;\n    padding: -1;\n    /*padding-bottom: 5px;\n    padding-top: 3px;*/\n    /*padding-left: 0.75rem;*/\n    /*padding-right: 0.75rem;*/\n    background-color: gray;\n    width: 350px;\n    border-radius: 5px;\n}\n.secondDiv[data-v-4c6d45c7] {\n    justify-content: center;\n}\n.thirdDiv[data-v-4c6d45c7] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    /*margin-top: 1rem;*/\n    background-color: black;\n}\n.firstP[data-v-4c6d45c7], h3[data-v-4c6d45c7] {\n    font-size: 0.875rem;\n    /*line-height: 1.25rem;*/\n    letter-spacing: 0.025em;\n    font-weight: 600;\n}\n.firstImage[data-v-4c6d45c7] {\n    width: 1.5rem;\n    height: 1.5rem;\n    margin-left: 0.75rem;\n    border-radius: 9999px;\n}\n.firstSpan[data-v-4c6d45c7] {\n    color: rgba(75, 85, 99);\n    font-size: 0.875rem;\n    /*line-height: 1.25rem;*/\n}\n.red[data-v-4c6d45c7] {\n    background-color: red;\n    width: inherit;\n    /*margin-top: 10px;*/\n    height: 50px;\n}\n.green[data-v-4c6d45c7] {\n    background-color: green;\n    width: inherit;\n    /*margin-top: 10px;*/\n    height: 50px;\n}\n.yellow[data-v-4c6d45c7] {\n    background-color: yellow;\n    width: inherit;\n   /* margin-top: 5px;*/\n    height: 50px;\n}\n.card[data-v-4c6d45c7] {\n    float: right;\n    margin: 2px;\n    background-color: white;\n}\n.divtitulo[data-v-4c6d45c7] {\n    float: left;\n}\n.divcards[data-v-4c6d45c7] {\n    float: right;\n}\n\n", ""]);
 // Exports
 module.exports = exports;
 

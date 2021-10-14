@@ -1,18 +1,14 @@
 ﻿<template>
     <div class="mainDiv">
+        <div class="divcards">
+            <card v-if="task.severity" :color="cardColor" :class="colorFondo">{{task.severity}}</card><br />
+            <card>{{ asigneeName }}</card>
+        </div>
 
-        <card v-if="task.severity" :color="cardColor" :class="colorFondo">{{task.severity}}</card>
-        <h1 class="firstP">{{task.title}}</h1>
-        <h3>{{ asigneeName }}</h3>
-        <!--<div class="secondDiv">-->
-        <!--<img class="firstImage"
-    src="https://pickaface.net/gallery/avatar/unr_sample_161118_2054_ynlrg.png"
-    alt="Avatar">-->
-        <!--</div>-->
-        <!--<div class="thirdDiv">-->
-        <!--<span class="firstSpan"></span>
-    <card v-if="task.severity" :color="cardColor" :class="colorFondo"></card>-->
-        <!--</div>-->
+        <div class="divtitulo">
+            <h1 class="firstP">{{task.title}}</h1>
+            <h3>{{ task.description }}</h3>
+        </div>
     </div>
 </template>
 <script>
@@ -48,6 +44,7 @@ export default {
         border-color: white;
         border-style: solid;
         border-width: 0.2px;
+        padding: -1;
         /*padding-bottom: 5px;
         padding-top: 3px;*/
         /*padding-left: 0.75rem;*/
@@ -55,7 +52,6 @@ export default {
         background-color: gray;
         width: 350px;
         border-radius: 5px;
-
     }
 
     .secondDiv {
@@ -73,7 +69,7 @@ export default {
 
     .firstP, h3 {
         font-size: 0.875rem;
-        line-height: 1.25rem;
+        /*line-height: 1.25rem;*/
         letter-spacing: 0.025em;
         font-weight: 600;
     }
@@ -88,30 +84,38 @@ export default {
     .firstSpan {
         color: rgba(75, 85, 99);
         font-size: 0.875rem;
-        line-height: 1.25rem;
+        /*line-height: 1.25rem;*/
     }
     .red {
         background-color: red;
         width: inherit;
-        margin-top: 20px;
+        /*margin-top: 10px;*/
         height: 50px;
     }
 
     .green {
         background-color: green;
         width: inherit;
-        margin-top: 20px;
+        /*margin-top: 10px;*/
         height: 50px;
     }
 
     .yellow {
         background-color: yellow;
         width: inherit;
-        margin-top: 20px;
+       /* margin-top: 5px;*/
         height: 50px;
     }
-    .card{
+    .card {
         float: right;
-        margin: 5px;
+        margin: 2px;
+        background-color: white;
     }
+    .divtitulo {
+        float: left;
+    }
+    .divcards {
+        float: right;
+    }
+
 </style>
